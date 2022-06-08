@@ -73,3 +73,7 @@ Create a new rule file, test file, and docs file in `./src/rules`, `./test/src/r
 -   Testing your rule: [`RuleTester` documentation](https://eslint.org/docs/developer-guide/nodejs-api#ruletester)
 
 Note that when exporting the rule, you use the unprefixed ID, but when adding the rule to the configuration, you need to use the fully-qualified name of the rule (in the format `vue-test-utils/{id}`).
+
+## License
+
+[MIT](./LICENSE)
