@@ -1,44 +1,44 @@
 {
-  "name": "eslint-plugin-vue-test-utils",
-  "version": "1.0.0",
-  "description": "Linting for Vue Test Utils",
-  "license": "MIT",
-  "author": {
-    "name": "Productiv",
-    "url": "https://github.com/BeProductiv"
-  },
-  "repository": {
-    "url": "https://github.com/BeProductiv/eslint-plugin-vue-test-utils"
-  },
-  "keywords": [
-    "eslint",
-    "eslintplugin",
-    "eslint-plugin",
-    "@vue/test-utils",
-    "vue",
-    "test"
-  ],
-  "main": "src/index.js",
-  "scripts": {
-    "lint": "eslint .",
-    "test": "jest",
-    "prettier": "prettier -cw ."
-  },
-  "dependencies": {
-    "semver": "^6.0.0",
-    "lodash": "^4.17.21"
-  },
-  "devDependencies": {
-    "eslint": "^6.2.1",
-    "eslint-plugin-eslint-plugin": "^4.0.1",
-    "eslint-plugin-node": "^11.1.0",
-    "jest": "26.6.3",
-    "prettier": "^2.6.2"
-  },
-  "engines": {
-    "node": "14.x || >= 16"
-  },
-  "peerDependencies": {
-    "eslint": ">=6"
-  }
+    "name": "eslint-plugin-vue-test-utils",
+    "version": "1.0.0",
+    "description": "Linting for Vue Test Utils",
+    "license": "MIT",
+    "author": {
+        "name": "Productiv",
+        "url": "https://github.com/BeProductiv"
+    },
+    "repository": {
+        "url": "https://github.com/BeProductiv/eslint-plugin-vue-test-utils"
+    },
+    "keywords": [
+        "eslint",
+        "eslintplugin",
+        "eslint-plugin",
+        "@vue/test-utils",
+        "vue",
+        "test"
+    ],
+    "main": "src/index.js",
+    "scripts": {
+        "lint": "eslint .",
+        "test": "jest",
+        "prettier": "prettier -cw ."
+    },
+    "dependencies": {
+        "semver": "^6.0.0",
+        "lodash": "^4.17.21"
+    },
+    "devDependencies": {
+        "eslint": "^6.2.1",
+        "eslint-plugin-eslint-plugin": "^4.0.1",
+        "eslint-plugin-node": "^11.1.0",
+        "jest": "26.6.3",
+        "prettier": "^2.6.2"
+    },
+    "engines": {
+        "node": "14.x || >= 16"
+    },
+    "peerDependencies": {
+        "eslint": ">=6"
+    }
 }

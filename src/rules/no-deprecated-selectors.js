@@ -86,7 +86,7 @@ module.exports = {
                                 functionName: node.callee.property.name,
                             },
                             fix:
-                                (isSuccessiveWrapperChain && !canChainComponentsFromCssWrappers)
+                                isSuccessiveWrapperChain && !canChainComponentsFromCssWrappers
                                     ? undefined
                                     : fixer => {
                                           return fixer.replaceText(

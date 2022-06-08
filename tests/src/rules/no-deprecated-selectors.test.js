@@ -50,15 +50,13 @@ describe('version independent tests', () => {
                 // chained functions
                 code: "import MyComponent from './MyComponent.vue'; wrapper.get(MyComponent).contains('div')",
                 errors: [{ messageId: 'deprecatedComponentSelector', data: { functionName: 'get' } }],
-                output:
-                    "import MyComponent from './MyComponent.vue'; wrapper.getComponent(MyComponent).contains('div')",
+                output: "import MyComponent from './MyComponent.vue'; wrapper.getComponent(MyComponent).contains('div')",
             },
             {
                 // chained functions with at()
                 code: "import MyComponent from './MyComponent.vue'; wrapper.findAll(MyComponent).at(2).contains('div')",
                 errors: [{ messageId: 'deprecatedComponentSelector', data: { functionName: 'findAll' } }],
-                output:
-                    "import MyComponent from './MyComponent.vue'; wrapper.findAllComponents(MyComponent).at(2).contains('div')",
+                output: "import MyComponent from './MyComponent.vue'; wrapper.findAllComponents(MyComponent).at(2).contains('div')",
             },
             ...flatMap(componentOnlyWrapperMembers, member => [
                 {

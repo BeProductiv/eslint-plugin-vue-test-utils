@@ -63,8 +63,8 @@ module.exports = {
             const isVmEmit = nodeIsComponentEmit(node);
 
             return (
-                ((isWrapperUpdateFunction || isVmEmit) &&
-                nodeIsCalledFromWrapper(isVmEmit ? node.callee.object.object : node.callee.object, wrapperNames))
+                (isWrapperUpdateFunction || isVmEmit) &&
+                nodeIsCalledFromWrapper(isVmEmit ? node.callee.object.object : node.callee.object, wrapperNames)
             );
         }
 
