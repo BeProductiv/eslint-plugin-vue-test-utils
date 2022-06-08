@@ -76,6 +76,48 @@ function getImportSourceName(boundIdentifier) {
     return importDefinition.node.parent.source.value;
 }
 
+/**
+ *
+ * @param {*} node
+ * @param {import('eslint').Rule.RuleContext} context
+ * @returns
+ */
+function isComponentSelector(node, context) {
+    if (node.type === 'ObjectExpression') {
+        return true;
+    }
+
+    const boundIdentifier = resolveIdentifierToVariable(node, context.getScope());
+    if (!boundIdentifier) {
+        return false;
+    }
+
+    const importDefinition = boundIdentifier.defs.find(({ type }) => type === 'ImportBinding');
+    if (importDefinition) {
+        const importedName =
+            importDefinition.node.type === 'ImportSpecifier'
+                ? importDefinition.node.imported.name
+                : /* default import */ undefined;
+        const importSourceName = getImportSourceName(boundIdentifier);
+
+        const isVueSourceFileImport = importSourceName.endsWith('.vue');
+
+        // short circuit to avoid costly module resolution attempts
+        return (
+            isVueSourceFileImport ||
+            isComponentImport(
+                importSourceName,
+                importedName,
+                // <text> is a special value indicating the input came from stdin
+                context.getFilename() === '<text>' ? context.getCwd() : context.getFilename()
+            )
+        );
+    }
+
+    // note(@alexv): could potentially add logic here to check for object literal assignment, require(), or mount()
+    return false;
+}
+
 function isVtuImport(identifierNode, scope) {
     const boundIdentifier = resolveIdentifierToVariable(identifierNode, scope);
     if (!boundIdentifier) {
@@ -87,5 +129,6 @@ function isVtuImport(identifierNode, scope) {
 module.exports = {
     nodeCalleeReturnsWrapper,
     nodeIsCalledFromWrapper,
+    isComponentSelector,
     isVtuImport,
 };
