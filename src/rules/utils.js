@@ -55,6 +55,22 @@ function nodeIsCalledFromWrapper(memberObjectNode, wrapperNames) {
     return false;
 }
 
+/**
+ * Returns true if the node represents a function call which is triggering a custom component
+ * emit. Eg, `wrapper.getComponent(MyComponent).vm.$emit('....')` returns true.
+ * @param {*} node
+ * @returns {boolean}
+ */
+function nodeIsComponentEmit(node) {
+    return (
+        node.callee &&
+        node.callee.type === 'MemberExpression' &&
+        node.callee.object.type === 'MemberExpression' &&
+        node.callee.object.property.name === 'vm' &&
+        node.callee.property.name === '$emit'
+    );
+}
+
 function resolveIdentifierToVariable(identifierNode, scope) {
     if (identifierNode.type !== 'Identifier') {
         return null;
@@ -74,6 +90,28 @@ function resolveIdentifierToVariable(identifierNode, scope) {
 function getImportSourceName(boundIdentifier) {
     const importDefinition = boundIdentifier.defs.find(({ type }) => type === 'ImportBinding');
     return importDefinition.node.parent.source.value;
+}
+
+function isComponentImport(importSourceName, identifierName, filename) {
+    let resolvedModulePath;
+    try {
+        resolvedModulePath = require.resolve(importSourceName, { paths: [filename] });
+    } catch {
+        return false; // install your packages, heathens!
+    }
+
+    try {
+        // require() does not take { paths } argument, so need to pass resolved filename directly
+        const m = require(resolvedModulePath);
+        const imported = identifierName ? m[identifierName] : m;
+
+        // close enough, right?
+        return typeof imported === 'object' || typeof imported === 'function';
+    } catch {
+        // some packages can't be imported in node. fall back to a secondary detection.
+        // it isn't perfect but it should work pretty okay for most working tests and vue libraries.
+        return resolvedModulePath.includes('node_modules') && importSourceName.includes('vue');
+    }
 }
 
 /**
@@ -129,6 +167,8 @@ function isVtuImport(identifierNode, scope) {
 module.exports = {
     nodeCalleeReturnsWrapper,
     nodeIsCalledFromWrapper,
+    nodeIsComponentEmit,
+    resolveIdentifierToVariable,
     isComponentSelector,
     isVtuImport,
 };
