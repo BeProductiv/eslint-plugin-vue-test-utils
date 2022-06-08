@@ -21,6 +21,7 @@
     "main": "src/index.js",
     "scripts": {
         "lint": "eslint .",
+        "lint:fix": "eslint --fix .",
         "test": "jest",
         "prettier": "prettier -cw ."
     },
