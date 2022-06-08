@@ -55,7 +55,37 @@ function nodeIsCalledFromWrapper(memberObjectNode, wrapperNames) {
     return false;
 }
 
+function resolveIdentifierToVariable(identifierNode, scope) {
+    if (identifierNode.type !== 'Identifier') {
+        return null;
+    }
+
+    while (scope) {
+        const boundIdentifier = scope.variables.find(({ name }) => name === identifierNode.name);
+        if (boundIdentifier) {
+            return boundIdentifier;
+        }
+        scope = scope.upper;
+    }
+
+    return null;
+}
+
+function getImportSourceName(boundIdentifier) {
+    const importDefinition = boundIdentifier.defs.find(({ type }) => type === 'ImportBinding');
+    return importDefinition.node.parent.source.value;
+}
+
+function isVtuImport(identifierNode, scope) {
+    const boundIdentifier = resolveIdentifierToVariable(identifierNode, scope);
+    if (!boundIdentifier) {
+        return false;
+    }
+    return getImportSourceName(boundIdentifier) === '@vue/test-utils';
+}
 
 module.exports = {
+    nodeCalleeReturnsWrapper,
     nodeIsCalledFromWrapper,
+    isVtuImport,
 };
