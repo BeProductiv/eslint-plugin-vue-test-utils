@@ -8,7 +8,7 @@
         "url": "https://github.com/BeProductiv"
     },
     "repository": {
-        "url": "https://github.com/BeProductiv/eslint-plugin-vue-test-utils"
+        "url": "https://github.com/BeProductiv/eslint-plugin-vue-test-utils.git"
     },
     "keywords": [
         "eslint",
