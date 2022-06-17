@@ -1,6 +1,6 @@
 {
     "name": "eslint-plugin-vue-test-utils",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "Linting for Vue Test Utils",
     "license": "MIT",
     "author": {
@@ -19,6 +19,11 @@
         "test"
     ],
     "main": "src/index.js",
+    "files": [
+        "docs",
+        "src",
+        "README.md"
+    ],
     "scripts": {
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
