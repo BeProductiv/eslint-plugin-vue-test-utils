@@ -1,5 +1,7 @@
 # eslint-plugin-vue-test-utils
 
+[![npm version](https://badge.fury.io/js/eslint-plugin-vue-test-utils.svg)](https://badge.fury.io/js/eslint-plugin-vue-test-utils)
+
 Linting for [@vue/test-utils](https://github.com/vuejs/test-utils).
 
 ## Installation
