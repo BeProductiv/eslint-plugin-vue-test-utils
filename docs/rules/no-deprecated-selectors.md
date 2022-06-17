@@ -6,7 +6,7 @@ The `--fix` option on the command line can automatically fix some of the problem
 
 This rule reports `Wrapper` `find*` and `get*` calls which are using improper selectors for their return types. For example, `find` should be called with a CSS selector and should be expected to return a DOM element, and `findComponent` should be called with a component selector and should be expected to return a Vue component.
 
-Addiitonally, this rule reports `wrapper.vm` usages which are chained off an improper selector function. For example, `wrapper.find('div')` always returns a DOM element in VTU 2, making `wrapper.find('div').vm` an incorrect usage.
+Additionally, this rule reports `wrapper.vm` usages which are chained off an improper selector function. For example, `wrapper.find('div')` always returns a DOM element in VTU 2, making `wrapper.find('div').vm` an incorrect usage.
 
 ### Options
 

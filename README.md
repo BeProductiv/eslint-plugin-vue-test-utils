@@ -61,7 +61,7 @@ If your `.eslintrc` file is a Javascript file instead of JSON, you may be able t
 
 ## Supported Rules
 
-(See rules)[./docs/rules] for a full list of rules enabled by this plugin.
+[See rules](./docs/rules) for a full list of rules enabled by this plugin.
 
 ## Adding new rules
 
